@@ -6,10 +6,8 @@ import random
 
 class DatasetProcesser:
     def __init__(self):
-
         self.splitter = "\n" + "####" + " "
         self.dataset = []
-
 
     def read_dataset_jsonl(self, path):
         """
@@ -29,7 +27,11 @@ class DatasetProcesser:
         random.seed(1)
         random.shuffle(self.dataset)
 
-    def remove_sybmols(self):
+    def remove_symbols(self):
+        """
+        Удаляет из ответов конструкции типа <<5+5=10>>
+        """
+
         for example in self.dataset:
             example["answer"] = re.sub('<<.+>>', '', example["answer"] )
          
@@ -43,6 +45,7 @@ class DatasetProcesser:
         @param - (str)
         @return - (Tpl[str, float])
         """
+
         answer, num = re.split(self.splitter, example['answer'])
         return answer, float(num)
 
@@ -57,7 +60,6 @@ class OutputProcesser:
         'last_num' - Модель ищет последнее число, и возвращает его.
         """
 
-        
         assert mode in ["prefix", "last_num"]
         self.mode = mode
         parsing_num_query = r"[-+]?(?:\d*[\.|\,]*\d+)"
