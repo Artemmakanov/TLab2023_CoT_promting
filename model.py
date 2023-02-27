@@ -127,8 +127,7 @@ class Model:
             inputs = inputs.cuda()
 
         outputs_lst = []
-        
-        # Поскольку в процессе генерации возможно превышение числа 512 токенов, применим конструкцию try
+
         with self.model.inference_session(max_length=512) as sess:
             self.kwargs["session"] = sess
 
@@ -213,16 +212,3 @@ class Model:
                 outputs.append(output)
                 
         return outputs
-
-
-
-
-
-
-        
-
-
-
-
-
-

@@ -92,7 +92,4 @@ class OutputProcesser:
         if not num_str is None:
             return float(re.sub(r',', '', num_str))
         else:
-            return None
-
-
-      
+            return None    
