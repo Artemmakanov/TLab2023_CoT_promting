@@ -186,14 +186,14 @@ class Model:
         example_sourse = dataset_processer.dataset[i] if model_size=="mini" else \
             dataset_processer.dataset[self.reindex[i]]
 
-        if realization=="standard":
+        if realization == "standard":
             
             prompt = self.prompts[example["prompt_index"]]
             answer = example["outputs"]
             input = self.answer_plus_suffix(prompt, example_sourse["question"], answer)
             outputs = self.produce_answer(input)
 
-        elif realization=="ansamble":
+        elif realization == "ansamble":
             prompt = self.prompts[example["prompt_index"]]
             answers = example["outputs"]
             outputs = []
