@@ -50,8 +50,6 @@ def compute_accuracy(dataset_processer, output_processer,
     if cnt_phrase:
         results["cnt_phrase"] = 0
     for candidate, golden in zip(data, dataset_processer.dataset if model_size=="mini" else [dataset_processer.dataset[j] for j in reindex]):
-        
-        
 
         _, golden_num = dataset_processer.get_answer_and_num(golden)
         # при стандартной реализации CoT выбор ответа - кандидата очевиден
@@ -79,11 +77,6 @@ def compute_accuracy(dataset_processer, output_processer,
             if len(set(num_candidates)) != len(num_candidates):
                 results["cnt_ansamble_works"] +=1 
                 
-         
-        
-
-        
-
         if not candidate_num is None and abs(candidate_num - golden_num) < eps:
             tp += 1
             #собираем вектор из количества слов и правильностью ответа

@@ -46,8 +46,9 @@ class Model:
 
         set_seed(seed)
 
+
+
         with open('promts.jsonl', 'r') as f:
-            # Use the json dumps method to write the list to disk
             self.prompts = json.loads(f.read())
 
         if self.gpu:
@@ -55,7 +56,6 @@ class Model:
 
         if sec_proc:
             with open('reindex.jsonl', 'r') as f:
-            # Use the json dumps method to write the list to disk
                 self.reindex = json.loads(f.read())
 
         if is_bonus:
@@ -93,13 +93,7 @@ class Model:
             self.kwargs["top_k"] = 50
 
         elif self.gen_regime == 'top-p':
-            self.kwargs["top_p"] = 0.9
-            
-        elif self.gen_regime == 'temp':
-            self.kwargs["temperature"] = 0.5
-        
-
-
+            self.kwargs["top_p"] = 0.9   
 
     def prompt_plus_quesion(self, prompt, question): 
         """
